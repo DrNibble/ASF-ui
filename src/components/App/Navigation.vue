@@ -16,6 +16,10 @@
         <NavigationLink :name="$t('asf-bans')" icon="ban" :to="{ name: 'asf-bans' }"></NavigationLink>
         <NavigationLink :name="$t('ui-config')" icon="wrench" :to="{ name: 'ui-config' }"></NavigationLink>
         <NavigationLink :name="$t('mass-editor')" icon="paste" :to="{ name: 'mass-editor' }"></NavigationLink>
+        <a href="/SCE/" target="_blank" rel="noreferrer noopener" class="navigation-link navigation-link--default">
+          <span class="navigation-link__icon"><FontAwesomeIcon icon="clone" fixedWidth></FontAwesomeIcon></span>
+          <span class="navigation-link__name">Rapport SCE</span>
+        </a>
       </div>
 
       <div class="navigation-category navigation-category--pull-bottom">
