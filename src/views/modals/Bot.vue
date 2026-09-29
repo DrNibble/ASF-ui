@@ -23,6 +23,10 @@
         <BotLink v-tooltip="$t('bot-fav-buttons-bgr')" icon="key" :link="{ name: 'bot-bgr', params: { bot: bot.name } }"></BotLink>
         <BotLink v-tooltip="$t('bot-fav-buttons-2fa')" icon="lock" :link="{ name: 'bot-2fa', params: { bot: bot.name } }"></BotLink>
 
+        <a v-if="bot.steamid !== '0'" v-tooltip.bottom-start="'Rapport SCE'" target="_blank" rel="noreferrer noopener" :href="sceReportURL" class="bot-action">
+          <FontAwesomeIcon class="bot-action__icon" icon="clone"></FontAwesomeIcon>
+        </a>
+
         <BotAction v-if="bot.paused && bot.active" v-tooltip="$t('bot-title-resume', { bot: bot.name })" icon="play" @click="resume"></BotAction>
         <BotAction v-if="!bot.paused && bot.active" v-tooltip="$t('bot-title-pause', { bot: bot.name })" icon="pause" @click="pause"></BotAction>
 
@@ -64,6 +68,10 @@
       }),
       bot() {
         return this.$store.getters['bots/bot'](this.$route.params.bot);
+      },
+      sceReportURL() {
+        // Dedicated SCE scraper report page for this bot (profilelink served by the SCEScraper plugin under /SCE/)
+        return `/SCE/?profile=profiles/${this.bot.steamid}`;
       },
       timeRemaining() {
         if (this.bot.status !== 'farming') return '-';
